@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 
 
 @Data
@@ -15,18 +14,19 @@ import org.springframework.data.annotation.Id;
 @Entity
 public class Token {
 
-    @jakarta.persistence.Id
     @Id
     @GeneratedValue
     private Integer id;
     @Column(unique = true)
     public String token;
+    @Enumerated(EnumType.STRING)
+    public TokenType tokenType = TokenType.BEARER;
     public boolean revoked;
     public boolean expired;
     @ManyToOne
     @JoinColumn(name = "user_id")
     //@JsonProperty(access = JsonProperty.Access.READ_WRITE)
-    public USER user;
+    public User user;
 
     public void setId(Integer id) {
         this.id = id;

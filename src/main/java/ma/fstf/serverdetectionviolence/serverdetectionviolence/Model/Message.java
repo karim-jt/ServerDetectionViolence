@@ -6,8 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Collection;
-
 
 @Data
 @Builder
@@ -20,14 +18,14 @@ public class Message {
     @GeneratedValue
     Integer id;
     @Column
-    String Texte;
+    String texte;
     @Column
     String img;
     @ManyToOne
     @JoinColumn(name = "emmet_id")
-    USER emmet;
+    User emmet;
     @ManyToOne
     @JoinColumn(name = "recep_id")
-    USER recep;
+    User recep;
 
 }
