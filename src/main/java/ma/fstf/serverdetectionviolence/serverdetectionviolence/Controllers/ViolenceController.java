@@ -28,7 +28,8 @@ public class ViolenceController {
     @GetMapping("/getMessages/{id}")
     public List<MessaageDTO> getMessages(@PathVariable Integer id) throws Exception {
 
-        System.out.println("salamo");
+        System.out.println("salamo"+id);
+
         return MessageService.getMessages1(id);
     }
 

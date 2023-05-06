@@ -8,6 +8,8 @@ import ma.fstf.serverdetectionviolence.serverdetectionviolence.Repository.UserRe
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,8 +34,12 @@ public class MessageService {
             m.setTexte(list.get(i).getTexte());
             u1=list.get(i).getEmmet();
             m.setId_emmet(u1.getId());
+            m.setEmetteur(u1.getUsername());
+
             u=list.get(i).getRecep();
             m.setId_recep(u.getId());
+            m.setRecepteur(u.getUsername());
+            m.setDate(list.get(i).getDate());
             list1.add(m);
         }
 
@@ -44,21 +50,35 @@ return list1;
         User u=new User();
         u=userRepo.findUSERByIdIs(id);
         User emeteur=new User();
-MessaageDTO m=new MessaageDTO();
-List<MessaageDTO> list1=new ArrayList<MessaageDTO>();
-        List<Message> list=messageRepo.findMessageByRecepEquals(u);
+
+List<MessaageDTO> list1=new ArrayList<>();System.out.println("la list est :");
+        List<Message> list=messageRepo.findMessageByRecepEquals(id);
+
  for(int i=0;i<list.size();i++){
+     MessaageDTO m= new MessaageDTO();
     m.setImg(list.get(i).getImg());
     m.setTexte(list.get(i).getTexte());
     emeteur=list.get(i).getEmmet();
     m.setId_emmet(emeteur.getId());
+    m.setEmetteur(emeteur.getUsername());
+
+    m.setRecepteur(u.getUsername());
+
+   m.setDate(list.get(i).getDate());
+
     list1.add(m);
+     System.out.println(list1+"l'iteration i"+i);
 }
 
         return list1;
     }
     public void envoyerMessage(MessaageDTO mes) {
+        LocalDate lt = LocalDate.now();
 
+        DateTimeFormatter formatters = DateTimeFormatter.ofPattern("d/MM/uuuu");
+        String text = lt.format(formatters);
+        LocalDate parsedDate = LocalDate.parse(text, formatters);
+        System.out.println("date "+lt);
     Message m=new Message();
         User emetteur=new User();
         User recepteur=new User();
@@ -73,6 +93,7 @@ List<MessaageDTO> list1=new ArrayList<MessaageDTO>();
         m.setTexte(mes.getTexte());
     m.setEmmet(emetteur);
     m.setRecep(recepteur);
+    m.setDate(parsedDate);
     messageRepo.save(m);
     }
 

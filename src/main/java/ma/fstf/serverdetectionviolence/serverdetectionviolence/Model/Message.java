@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 
 @Data
 @Builder
@@ -21,6 +23,9 @@ public class Message {
     String texte;
     @Column
     String img;
+    private LocalDate date;
+    @Column(columnDefinition = "boolean default false")
+    private boolean vue;
     @ManyToOne
     @JoinColumn(name = "emmet_id")
     User emmet;
