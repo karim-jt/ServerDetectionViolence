@@ -51,7 +51,7 @@ return list1;
         u=userRepo.findUSERByIdIs(id);
         User emeteur=new User();
 
-List<MessaageDTO> list1=new ArrayList<>();System.out.println("la list est :");
+        List<MessaageDTO> list1=new ArrayList<>();System.out.println("la list est :");
         List<Message> list=messageRepo.findMessageByRecepEquals(id);
 
  for(int i=0;i<list.size();i++){

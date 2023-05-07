@@ -38,7 +38,7 @@ public class AuthenticationService {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getUserName(),
-                        request.getUserName()
+                        request.getPass()
                 )
         );
         var user = repository.findByUserName(request.getUserName()).orElseThrow();
@@ -46,7 +46,7 @@ public class AuthenticationService {
         revokeAllUserTokens(user);
         saveUserToken(user, jwtToken);
         return AuthenticationResponse.builder()
-                .token(jwtToken)
+                .token(jwtToken).id(user.getId())
                 .build();
     }
 
