@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Data
@@ -23,7 +24,7 @@ public class Message {
     String texte;
     @Column
     String img;
-    private LocalDate date;
+    private LocalDateTime date;
     @Column(columnDefinition = "boolean default false")
     private boolean vue;
     @ManyToOne

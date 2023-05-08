@@ -1,6 +1,7 @@
 package ma.fstf.serverdetectionviolence.serverdetectionviolence.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,6 +21,7 @@ import java.util.Collection;
 public class User implements UserDetails {
     @Id
     @GeneratedValue
+
     private int id;
     @Column
     String userName;

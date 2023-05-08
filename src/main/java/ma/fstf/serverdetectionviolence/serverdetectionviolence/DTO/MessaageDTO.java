@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,7 +20,7 @@ public class MessaageDTO {
     String Img;
 String Emetteur;
 String Recepteur;
-    LocalDate date;
+    LocalDateTime date;
     Integer id_emmet;
 
     Integer id_recep;
